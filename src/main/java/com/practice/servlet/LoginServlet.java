@@ -31,9 +31,9 @@ public class LoginServlet extends HttpServlet {
 	private String login(String username,HttpServletRequest request) 
 										throws SQLException{
 		ResultSet rs = JdbcUtil.getCustomerByName(username);
-		String info = "µÇÂ¼Ê§°Ü£¡";
+		String info = "µÇÂ¼Ê§°Ü£¡<br><br><a href='login.jsp'>·µ»ØµÇÂ½½çÃæ</a>";
 		if(rs.next()){
-			info = "µÇÂ¼³É¹¦£¡";
+			info = "µÇÂ¼³É¹¦£¡<br><br><a href='/filmServlet?handle=find'>²é¿´film</a>";
 			HttpSession session = request.getSession();
 			session.setAttribute("username", username);
 		}
