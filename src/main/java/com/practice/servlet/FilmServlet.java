@@ -1,6 +1,7 @@
 package com.practice.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -33,6 +34,11 @@ public class FilmServlet extends HttpServlet {
 			try {
 				deleteFilmById(request, response);
 			} catch (SQLException e) {
+				if(e.getClass().getName().equals("com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException")){
+					PrintWriter out = response.getWriter();
+					out.println("由于该数据跟其他信息有所关联，故不能删除！<br><br>"
+					  + "<a href='/filmServlet?handle=find'>返回查看film</a>");
+				}
 				e.printStackTrace();
 			}
 		} else if ("add".equals(handle)){
