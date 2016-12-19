@@ -44,7 +44,7 @@ public class JdbcUtil {
 	}
 
 	public static int deleteFilm(Film film) throws SQLException {
-		String sql = "delete from film where f.film_id = " + film.getFilmId();
+		String sql = "delete from film where film_id = " + film.getFilmId();
 		int re = statement.executeUpdate(sql);
 		return re;
 	}
